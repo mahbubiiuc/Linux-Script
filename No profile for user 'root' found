@@ -1,0 +1,36 @@
+Problem: User profile crashed or wrongly mapped
+
+Your session only lasted less than 10 seconds. If you have not logged out yourself., 
+this could mean that there is some installation problem or that you may be out of diskspace. 
+Try logging in with one of the failsafe sessions to see if you can fix this problem
+
+No profile for user 'root' found
+/bin/sh: /home/oracle:/bin/bash: No such file or directory
+1.	Check vim /etc/passwd and see whether root is mapped properly. In this case this is the error.  So login assingle user mode:
+	a. Press any key while booting
+	b. Press e 
+	c. Press e on the quiet option at next screen
+	d. At entry mode write single instead of quiet
+	e. press enter to get back and press b to boot
+
+2.	See permission for root on /bin/sh
+ls -lart /bin/sh
+
+3.	See permission for root on /tmp
+ls -lart /temp
+
+to give permission if anyone of 1 & 2 denied do:  chmod -R 777 /tmp
+4.	See disk space if whether its full or not
+df –h
+
+5.	See whether /root/.bash_profile exists or not usually u can't conenct  as root as other user u'll get permission error if profile does not exist
+vi /root/.bash_profile OR cat /root/.bash_profile
+
+6.	To list you can check
+ll /root/.bash_profile from oracle usre
+
+7.	See whetehr there is any problem at ssh:
+tail -f -n 10 /etc/ssh/ssh_config
+
+8.	 See condition of root user: 
+id root
